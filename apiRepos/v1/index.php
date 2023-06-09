@@ -38,9 +38,9 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
     }else{
 
       
-
+$keyword=$keywords." ".$user." ".$tittle." ".$type." ".$value." ";
    
-    $query= mysqli_query($conectar,"INSERT INTO repo_one (repo_id,tittle,value,keywords,type,user_id,public) VALUES ('$primeros_ocho','$tittle','$value','$keywords','$type','$user','$public')");
+    $query= mysqli_query($conectar,"INSERT INTO repo_one (repo_id,tittle,value,keywords,type,user_id,public) VALUES ('$primeros_ocho','$tittle','$value','$keyword','$type','$user','$public')");
        
     
    
@@ -56,7 +56,7 @@ Flight::route('POST /postLoged', function () {
     header('Access-Control-Allow-Origin: *');
 
     $conectar=conn();
-    $uri = $_SERVER['REQUEST_URI'];
+   // $uri = $_SERVER['REQUEST_URI'];
 
     $username=(Flight::request()->data->username);
     $tittle=(Flight::request()->data->tittle);
@@ -84,12 +84,12 @@ Flight::route('POST /postLoged', function () {
 
       
 
-   
-    $query= mysqli_query($conectar,"INSERT INTO repo_one (repo_id,tittle,value,keywords,type,user_id,public) VALUES ('$primeros_ocho','$tittle','$value','$keywords','$type','$username','$public')");
+   $keyword=$keywords." ".$username." ".$tittle." ".$type." ".$value;
+    $query= mysqli_query($conectar,"INSERT INTO repo_one (repo_id,tittle,value,keywords,type,user_id,public) VALUES ('$primeros_ocho','$tittle','$value','$keyword','$type','$username','$public')");
        
     
-    
-    echo "true"; // muestra "/mi-pagina.php?id=123"
+   // echo "nn";
+   echo "true"; // muestra "/mi-pagina.php?id=123"
 
     }
 });
