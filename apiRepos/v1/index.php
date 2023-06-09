@@ -98,9 +98,6 @@ Flight::route('POST /postLoged', function () {
 Flight::route('POST /putLoged', function () {
     
     header('Access-Control-Allow-Origin: *');
-    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-header('content-type: application/json; charset=utf-8');
 
     $conectar=conn();
     $uri = $_SERVER['REQUEST_URI'];
@@ -117,9 +114,10 @@ header('content-type: application/json; charset=utf-8');
     
      //echo "ups! el id del repo está repetido , intenta nuevamente, gracias.";
    
-
+     $keyword=$keywords." ".$username." ".$tittle." ".$type." ".$value;
    
-    $query= mysqli_query($conectar,"UPDATE repo_one SET tittle='$tittle',value='$value',keywords='$keywords',type='$type',public='$public' WHERE user_id='$username' and repo_id='$repo'");
+   
+    $query= mysqli_query($conectar,"UPDATE repo_one SET tittle='$tittle',value='$value',keywords='$keyword',type='$type',public='$public' WHERE user_id='$username' and repo_id='$repo'");
        
     
     
